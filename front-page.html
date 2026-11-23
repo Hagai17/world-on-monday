@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The World on Monday — 23 November 2026</title>
+<style>
+  :root{
+    --paper:#f6f1e3; --ink:#1b1712; --muted:#6f6455; --red:#a0271f;
+    --blue:#1d4e6b; --rule:#2a241c; --hair:#b9ac93;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{width:768px;height:1024px;overflow:hidden;background:var(--paper);}
+  body{
+    font-family:"Noto Serif","DejaVu Serif",Georgia,serif;color:var(--ink);
+    padding:10px 28px 8px 28px;
+  }
+  .sans{font-family:"DejaVu Sans","Noto Sans",Arial,sans-serif;}
+  /* ---------- masthead ---------- */
+  .kicker{
+    text-align:center;font-size:9px;letter-spacing:3.2px;color:var(--muted);
+    text-transform:uppercase;padding-bottom:5px;
+  }
+  .masthead{
+    text-align:center;font-weight:900;font-size:38px;letter-spacing:.5px;white-space:nowrap;
+    line-height:1.02;border-top:3.5px solid var(--rule);border-bottom:1.5px solid var(--rule);
+    padding:5px 0 5px 0;
+  }
+  .masthead .amp{color:var(--red);}
+  .dateline{
+    display:flex;justify-content:space-between;align-items:baseline;
+    border-bottom:3.5px solid var(--rule);padding:4px 1px 5px 1px;
+    font-size:10px;letter-spacing:1.6px;text-transform:uppercase;
+  }
+  .dateline b{font-size:12.5px;letter-spacing:2px;}
+  .dateline .mid{color:var(--red);font-weight:bold;}
+  /* ---------- timeline ---------- */
+  .timeline{display:flex;gap:10px;padding:4px 0 4px 0;border-bottom:1px solid var(--hair);}
+  .tl{flex:1;border-left:2px solid var(--rule);padding-left:8px;}
+  .tl .day{font-size:9px;font-weight:bold;letter-spacing:1.8px;color:var(--red);text-transform:uppercase;}
+  .tl .ev{font-size:9px;line-height:1.32;color:#33302a;margin-top:2px;}
+  /* ---------- stories ---------- */
+  .label{font-size:8.6px;font-weight:bold;letter-spacing:2px;color:var(--red);text-transform:uppercase;}
+  .num{
+    display:inline-block;background:var(--red);color:#fff;border-radius:50%;
+    width:15px;height:15px;line-height:15px;text-align:center;font-size:9.5px;
+    font-family:"DejaVu Sans",Arial,sans-serif;font-weight:bold;vertical-align:2px;margin-right:4px;
+  }
+  .tag{font-size:8.4px;letter-spacing:.6px;color:var(--muted);text-transform:uppercase;margin-top:3px;}
+  .tag b{color:var(--blue);}
+  .lead{padding:4px 0 4px 0;border-bottom:1px solid var(--hair);}
+  .lead h1{font-size:24px;line-height:1.07;font-weight:900;margin:3px 0 4px 0;}
+  .lead p{font-size:11px;line-height:1.36;}
+  .cols2{display:flex;gap:16px;padding:4px 0;border-bottom:1px solid var(--hair);}
+  .cols2 .story{flex:1;}
+  .cols2 .story + .story{border-left:1px solid var(--hair);padding-left:16px;}
+  .story h2{font-size:16px;line-height:1.12;font-weight:900;margin:3px 0 3px 0;}
+  .story p{font-size:10.1px;line-height:1.37;}
+  /* ---------- map row ---------- */
+  .maprow{display:flex;gap:16px;padding:5px 0;border-bottom:1px solid var(--hair);align-items:flex-start;}
+  .mappanel{width:352px;flex:none;border:1.5px solid var(--rule);padding:6px 8px 4px 8px;background:#efe8d5;}
+  .mappanel .cap{font-size:8.6px;letter-spacing:1.6px;color:var(--muted);text-transform:uppercase;display:flex;justify-content:space-between;}
+  .mappanel .cap b{color:var(--ink);}
+  .mapstack{flex:1;display:flex;flex-direction:column;gap:5px;}
+  .mapstack .story h3{font-size:13.2px;line-height:1.13;font-weight:900;margin:2px 0 2px 0;}
+  .mapstack .story p{font-size:9.1px;line-height:1.3;}
+  /* ---------- grid of six ---------- */
+  .grid3{display:flex;gap:14px;padding:4px 0 3px 0;border-bottom:1px solid var(--hair);}
+  .grid3 .col{flex:1;display:flex;flex-direction:column;gap:6px;}
+  .grid3 .col + .col{border-left:1px solid var(--hair);padding-left:14px;}
+  .grid3 .story h3{font-size:12.8px;line-height:1.14;font-weight:900;margin:2px 0 2px 0;}
+  .grid3 .story p{font-size:8.8px;line-height:1.29;}
+  /* ---------- briefs ---------- */
+  .briefs{padding:4px 0 3px 0;border-bottom:1px solid var(--hair);}
+  .briefs .head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px;}
+  .briefs .head .t{font-size:12.5px;font-weight:900;letter-spacing:2.5px;}
+  .briefs .head .s{font-size:8.4px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;}
+  .briefcols{display:flex;gap:16px;}
+  .briefcols .bc{flex:1;}
+  .briefcols .bc + .bc{border-left:1px solid var(--hair);padding-left:16px;}
+  .brief{font-size:8.1px;line-height:1.24;margin-bottom:2.5px;}
+  .brief .rg{font-family:"DejaVu Sans",Arial,sans-serif;font-size:8px;font-weight:bold;letter-spacing:1px;color:var(--red);text-transform:uppercase;}
+  .brief .src{color:var(--muted);font-size:8.6px;}
+  /* ---------- date check + footer ---------- */
+  .datecheck{
+    margin-top:3px;border:1.5px solid var(--rule);padding:3px 10px 4px 10px;
+    font-size:8.7px;line-height:1.32;background:#efe8d5;
+  }
+  .datecheck b{letter-spacing:1.6px;font-size:9px;}
+  .footer{
+    margin-top:5px;text-align:center;font-size:8.2px;color:var(--muted);line-height:1.45;letter-spacing:.3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="kicker sans">One day &middot; one page &middot; every story sourced and marked how sure we are</div>
+  <div class="masthead">THE WORLD <span class="amp">ON</span> MONDAY</div>
+  <div class="dateline sans">
+    <span><b>MONDAY 23 NOVEMBER 2026</b></span>
+    <span class="mid">20 stories &middot; 5 continents</span>
+    <span>Late final edition</span>
+  </div>
+
+  <div class="timeline">
+    <div class="tl"><div class="day sans">Sat 21 Nov</div>
+      <div class="ev">Iran hits Bahrain &middot; Gaza truck struck &middot; EU&ndash;Indonesia pact signed</div></div>
+    <div class="tl"><div class="day sans">Sun 22 Nov</div>
+      <div class="ev">COP31 collapses in Antalya &middot; Dymer block destroyed, 14 missing &middot; Kryvyi Rih struck</div></div>
+    <div class="tl"><div class="day sans">Mon 23 Nov</div>
+      <div class="ev">Nvidia restores Huang &middot; Benghazi sinking reported &middot; Democrats seal House majority</div></div>
+  </div>
+
+  <div class="lead">
+    <div class="label sans"><span class="num">1</span>Climate &middot; Antalya, T&uuml;rkiye</div>
+    <h1>COP31 COLLAPSES WITHOUT A DEAL</h1>
+    <p>The UN climate summit in Antalya &mdash; the longest in history &mdash; ran past its Friday deadline and
+    ended on Sunday with no agreement: more than 190 countries split over phasing out fossil fuels and over
+    who pays for the damage.</p>
+    <div class="tag sans"><b>Confirmed</b> &mdash; Reuters reports &middot; Just Security &middot; AMK briefing</div>
+  </div>
+
+  <div class="cols2">
+    <div class="story">
+      <div class="label sans"><span class="num">2</span>War at sea &middot; Benghazi, Libya</div>
+      <h2>UKRAINE SINKS RUSSIAN CORVETTE IN LIBYAN PORT</h2>
+      <p>Kyiv says seven naval drones struck the Russian corvette <i>Merkury</i> at Benghazi. The UN
+      mission in Libya urges a probe.</p>
+      <div class="tag sans"><b>Confirmed</b> &mdash; Russell Record &middot; Arab News &middot; UN News</div>
+    </div>
+    <div class="story">
+      <div class="label sans"><span class="num">3</span>Technology &middot; Santa Clara</div>
+      <h2>NVIDIA RESTORES HUANG IN BOARDROOM REVERSAL</h2>
+      <p>Nvidia reinstated co-founder Jensen Huang as CEO after President Trump called into the board
+      meeting. The shares leapt about 30 per cent, igniting an AI rebound.</p>
+      <div class="tag sans"><b>Confirmed</b> &mdash; Reuters</div>
+    </div>
+  </div>
+
+  <div class="maprow">
+    <div class="mappanel">
+      <div class="cap sans"><span><b>The day on the map</b></span><span>numbers match the stories</span></div>
+      <svg id="map" width="336" height="138" viewBox="0 0 336 150" aria-label="Schematic world map"></svg>
+      <div class="cap sans"><span>Schematic &mdash; not to scale</span><span>1&ndash;11 as numbered</span></div>
+      <div class="sans" style="font-size:8.3px;line-height:1.5;color:#33302a;margin-top:5px;">
+        <b>1</b> Antalya &middot; <b>2</b> Benghazi &middot; <b>3</b> Santa Clara &middot; <b>4</b> Kyiv region &middot;
+        <b>5</b> Warsaw &middot; <b>6</b> Washington &middot; <b>7</b> Ramallah &middot; <b>8</b> Bahrain &amp; Hormuz &middot;
+        <b>9</b> Seoul &middot; <b>10</b> Ituri &middot; <b>11</b> Gaza
+      </div>
+    </div>
+    <div class="mapstack">
+      <div class="story">
+        <div class="label sans"><span class="num">4</span>Ukraine &middot; Dymer &amp; Kryvyi Rih</div>
+        <h3>FLATS DESTROYED NEAR KYIV; 14 MISSING</h3>
+        <p>A Russian drone strike partly destroyed a Dymer apartment block; 14 people are
+        missing, Zelenskyy said. Overnight strikes on Kryvyi Rih killed a child and a young woman, damaging
+        25 buildings, a hospital and schools.</p>
+        <div class="tag sans"><b>Confirmed</b> &mdash; Reuters &middot; Just Security &middot; ANI</div>
+      </div>
+      <div class="story">
+        <div class="label sans"><span class="num">5</span>Europe &middot; Warsaw</div>
+        <h3>NATO VOWS TO DEFEND &ldquo;EVERY INCH&rdquo; OF POLAND</h3>
+        <p>Poland says three Russian objects &mdash; likely two missiles and a drone &mdash; crossed into its
+        airspace. NATO chief Rutte: the alliance will defend every inch of Poland.</p>
+        <div class="tag sans"><b>Confirmed</b> &mdash; Just Security &middot; 10 Things</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid3">
+    <div class="col">
+      <div class="story">
+        <div class="label sans"><span class="num">7</span>West Bank &middot; Ramallah</div>
+        <h3>SETTLER ARSON IS &ldquo;JEWISH TERRORISM&rdquo; &mdash; EISENKOT</h3>
+        <p>PM-elect Gadi Eisenkot condemns settler arson raids on Palestinian villages near Ramallah &mdash;
+        burned-out cars, &ldquo;Death to Arabs&rdquo; graffiti.</p>
+        <div class="tag sans"><b>Confirmed</b> &mdash; Reuters &middot; Just Security</div>
+      </div>
+      <div class="story">
+        <div class="label sans"><span class="num">10</span>Africa &middot; Ituri, DR Congo</div>
+        <h3>FIGHTING STALLS EBOLA RESPONSE IN CONGO</h3>
+        <p>Heavy fighting in Ituri is disrupting the Ebola response, WHO warns: health workers sheltered
+        24 hours in a maternity ward as clashes closed in.</p>
+        <div class="tag sans"><b>Confirmed</b> &mdash; UN News &middot; WHO</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="story">
+        <div class="label sans"><span class="num">8</span>The Gulf &middot; Bahrain &amp; Hormuz</div>
+        <h3>IRAN HITS BAHRAIN; VOWS TO HOLD HORMUZ</h3>
+        <p>Iran hit a civilian industrial facility in Bahrain, injuring two; the IRGC says it struck US
+        positions. Tehran vows to control Hormuz against a US blockade.</p>
+        <div class="tag sans"><b>Confirmed</b> &mdash; Just Security &middot; Arab News</div>
+      </div>
+      <div class="story">
+        <div class="label sans"><span class="num">11</span>Gaza</div>
+        <h3>TRUCK STRUCK; AID GROUP DENIES IT WAS THEIRS</h3>
+        <p>Israeli forces hit a truck in Gaza, killing three, the Health Ministry says. It bore a World
+        Central Kitchen logo; the charity says the vehicle was not theirs.</p>
+        <div class="tag sans"><b>Reported</b> &mdash; Reuters via Just Security</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="story">
+        <div class="label sans"><span class="num">6</span>United States &middot; Washington</div>
+        <h3>DEMOCRATS TAKE BIGGEST HOUSE MAJORITY SINCE 1992</h3>
+        <p>A North Carolina recount seals it: Democrats hold at least 258 seats &mdash; their largest House
+        majority in three decades.</p>
+        <div class="tag sans"><b>Confirmed</b> &mdash; AMK &middot; Russell Record</div>
+      </div>
+      <div class="story">
+        <div class="label sans"><span class="num">9</span>Asia &middot; Seoul</div>
+        <h3>FIRST WOMAN SPY CHIEF; MINISTER QUITS IN SEOUL</h3>
+        <p>President Lee&rsquo;s reshuffle makes ex-justice minister Kang Kum-sil the first woman to run the
+        National Intelligence Service. Education minister Choi resigns over rushed AI anti-cheating rules.</p>
+        <div class="tag sans"><b>Confirmed</b> &mdash; Just Security &middot; AMK</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="briefs">
+    <div class="head"><span class="t sans">THE WORLD IN BRIEF</span>
+      <span class="s sans">Nine more, in one line each</span></div>
+    <div class="briefcols">
+      <div class="bc">
+        <div class="brief"><span class="rg">Europe</span> Spain&rsquo;s Supreme Court shelves the Puigdemont case &mdash; the Catalan leader can come home after nearly a decade in exile. <span class="src">(Reuters)</span></div>
+        <div class="brief"><span class="rg">Trade</span> EU&ndash;Indonesia pact signed Saturday after 10 years of talks; 98.5% of tariff lines to go. <span class="src">(WSJ &middot; Commission)</span></div>
+        <div class="brief"><span class="rg">Americas</span> FBI investigates an apparent hack of the national crime database. <span class="src">(wires)</span></div>
+        <div class="brief"><span class="rg">Americas</span> Trump halts an Army plan to blow up 10,000 lb of lead azide in Iowa. <span class="src">(Reuters)</span></div>
+        <div class="brief"><span class="rg">Business</span> CrowdStrike to buy rival Zscaler in a $43.9 billion all-stock deal. <span class="src">(Reuters)</span></div>
+      </div>
+      <div class="bc">
+        <div class="brief"><span class="rg">Asia-Pacific</span> America&rsquo;s lead over China in Asia is its smallest since 2018, the Lowy Index finds. <span class="src">(Lowy Institute)</span></div>
+        <div class="brief"><span class="rg">Africa</span> At least 24 mourners die as a funeral boat capsizes in Nigeria&rsquo;s Bayelsa State. <span class="src">(wires)</span></div>
+        <div class="brief"><span class="rg">Middle East</span> US discusses training Syrian soldiers in demining &mdash; a first since 2024. <span class="src">(Reuters)</span></div>
+        <div class="brief"><span class="rg">Sport</span> Skubal agrees a nine-year, $450M Mets deal &mdash; largest ever for a pitcher. <span class="src">(wires)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="datecheck">
+    <b class="sans">DATE CHECK</b> &mdash; All stories reported on <b>Monday 23 November 2026</b>;
+    weekend events carry their day in the timeline above. Left out as older news: the 13 November pictures
+    (a different day&rsquo;s contest), and Sam Altman&rsquo;s return to OpenAI &mdash; that was November 2023, history,
+    not today. Huang&rsquo;s 12 November resignation is background to story 3.<br>
+    <span style="color:var(--muted)">Sources: Reuters &middot; UN News &middot; WSJ &middot; Just Security &middot; Arab News &middot;
+    Russell Record &middot; AMK &middot; 10 Things &middot; Lowy Institute &middot; wires.
+    <b>Confirmed</b> = two or more independent reports agree; <b>Reported</b> = a single source at press time.</span>
+  </div>
+
+<script>
+  // Schematic dot-grid world map. Land spans per row: row 0 is ~77.5N,
+  // each row steps 5 degrees of latitude; each column steps 6 degrees
+  // of longitude starting at 180W. Numbers mark the 11 main stories.
+  var LAND = {
+    0:[[6,15],[21,24],[38,55]],   1:[[2,6],[8,18],[21,23],[31,33],[36,57]],
+    2:[[2,19],[22,22],[27,27],[31,57]], 3:[[3,7],[9,20],[22,22],[29,56]],
+    4:[[9,19],[29,55]],           5:[[10,18],[29,55]],
+    6:[[11,19],[30,54]],          7:[[11,19],[30,35],[37,53]],
+    8:[[11,18],[29,52]],          9:[[11,17],[28,50]],
+    10:[[12,15],[27,39],[42,49]], 11:[[12,14],[26,35],[37,38],[42,44],[46,48],[50,50]],
+    12:[[12,13],[25,35],[43,43],[46,48],[50,50]],
+    13:[[16,19],[25,36],[47,52]], 14:[[16,20],[26,35],[46,53]],
+    15:[[16,21],[27,34],[48,54]], 16:[[16,21],[27,34],[52,54]],
+    17:[[17,21],[28,34],[50,54]], 18:[[17,21],[28,34],[49,54]],
+    19:[[17,20],[29,33],[49,53]], 20:[[17,20],[29,32],[49,53]],
+    21:[[18,20],[29,31],[49,52]], 22:[[18,19],[29,30],[50,52],[57,57]],
+    23:[[18,19],[56,57]],         24:[[18,18],[56,56]],
+    25:[[18,18]]
+  };
+  var MARKS = [ // [number, lon, lat, badge dx, badge dy] in px
+    [1, 30.7, 36.9, -11, -9],  [2, 20.1, 32.1, -7, 11],  [3, -122.0, 37.4, 0, 0],
+    [4, 30.5, 50.4, 0, -3],    [5, 21.0, 52.2, -3, 0],    [6, -77.0, 38.9, 0, 0],
+    [7, 35.2, 31.9, 14, -10],  [8, 50.6, 26.2, 3, 3],    [9, 127.0, 37.6, 0, 0],
+    [10, 29.5, 1.5, 0, 0],     [11, 34.3, 31.4, -16, 11]
+  ];
+  var svg = document.getElementById('map');
+  var NS = 'http://www.w3.org/2000/svg';
+  var CELL = 336 / 60; // 5.6 px per grid cell; 26 rows -> 145.6 px tall
+  function el(name, attrs){
+    var e = document.createElementNS(NS, name);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+  for (var r = 0; r < 26; r++){
+    (LAND[r] || []).forEach(function(span){
+      for (var c = span[0]; c <= span[1]; c++){
+        svg.appendChild(el('circle', {
+          cx: (c + 0.5) * CELL, cy: (r + 0.5) * CELL, r: 1.55, fill: '#8a7c5f'
+        }));
+      }
+    });
+  }
+  MARKS.forEach(function(m){
+    var x = (m[1] + 180) / 6 * CELL;        // longitude -> px
+    var y = (80 - m[2]) / 5 * CELL;          // latitude  -> px
+    var bx = x + m[3], by = y + m[4];
+    if (m[3] || m[4]) svg.appendChild(el('line', {x1: x, y1: y, x2: bx, y2: by, stroke: '#a0271f', 'stroke-width': 0.7}));
+    svg.appendChild(el('circle', {cx: x, cy: y, r: 1.9, fill: '#1b1712'}));
+    svg.appendChild(el('circle', {cx: bx, cy: by, r: 7.4, fill: '#a0271f', stroke: '#f6f1e3', 'stroke-width': 1.1}));
+    var t = el('text', {x: bx, y: by + 3.1, 'text-anchor': 'middle', fill: '#fff',
+      'font-size': m[0] > 9 ? 8 : 9, 'font-weight': 'bold', 'font-family': 'DejaVu Sans, Arial, sans-serif'});
+    t.textContent = m[0];
+    svg.appendChild(t);
+  });
+</script>
+</body>
+</html>
